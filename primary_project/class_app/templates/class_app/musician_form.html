@@ -1,0 +1,15 @@
+{% extends 'class_app/base.html' %}
+
+{% block body_block %}
+
+{% if form.instance.pk %}
+<h3>Update Musician</h3>
+{% else %}
+<h3>Add new Musician</h3>
+{% endif %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Add" name="submit" class="btn btn-warning btn-sm">
+</form>
+{% endblock %}

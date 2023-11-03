@@ -1,0 +1,27 @@
+{% extends "primary_app/base.html" %}
+
+{% block body_block %}
+<h2> Artist Name: {{artist_info.first_name}} {{artist_info.last_name}}</h2>
+<h3>Instrument: {{artist_info.instrument}}</h3>
+<hr>
+<a href="{% url 'primary_app:edit_artist' artist_id=artist_info.id %}" class="btn btn-success btn-sm">Edit</a>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Album Name</th>
+        <th>Release Date</th>
+        <th>Ratings</th>
+    </tr>
+    {% for data in albumInfo %}
+    <tr>
+        <td><a href="{% url 'primary_app:edit_album' album_id=data.id %}">{{data.name}}</a></td>
+        <td>{{data.release_date|date:"M d, Y"}}</td>
+        <td>{{data.num_stars}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<a href="{% url 'primary_app:delete_Musician' artist_id=artist_info.id %}" onclick="return confirm('Delete Musician!')" class="btn btn-danger btn-sm">Delete</a>
+
+{{album_list}}
+{% endblock %}
